@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signed() { return request.auth != null; }
+    function dono() { return signed() && request.auth.uid in ['F9nLEtltLHPtYRfV0NkLIQ71YSi2']; }
+
+    // progresso salvo de cada jogador (só ele lê e escreve)
+    match /data/users/{uid}/{doc} {
+      allow read, write: if signed() && request.auth.uid == uid;
+    }
+    // inventário público de cada jogador (todos leem, só o dono escreve)
+    match /inv/{uid} {
+      allow read: if signed();
+      allow write: if signed() && request.auth.uid == uid;
+    }
+    // comandos e configurações do ADM
+    match /cfg/{doc} {
+      allow read: if signed();
+      allow write: if dono();
+    }
+    // denúncias e sugestões
+    match /reports/{uid} {
+      allow read: if dono() || (signed() && request.auth.uid == uid);
+      allow write: if signed() && request.auth.uid == uid;
+    }
+    // mural de trocas e leilões
+    match /ads/{id} {
+      allow read: if signed();
+      allow create: if signed() && request.resource.data.from == request.auth.uid;
+      allow update, delete: if signed() && resource.data.from == request.auth.uid;
+    }
+    // trocas e lances
+    match /trades/{id} {
+      allow read: if signed();
+      allow create: if signed() && request.resource.data.from == request.auth.uid;
+      allow update: if signed() && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid)
+        && request.resource.data.from == resource.data.from && request.resource.data.to == resource.data.to;
+      allow delete: if signed() && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
+    }
+    // travas curtas das trocas
+    match /locks/{id} {
+      allow read, write: if signed();
+    }
+  }
+}
