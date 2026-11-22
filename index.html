@@ -30,6 +30,18 @@ h1{margin:0;font-size:1.3rem;letter-spacing:.5px}
 .arena{position:relative;display:flex;justify-content:center;align-items:center;height:340px}
 /* jogo mais liso: o que acontece dentro do campo não faz a página inteira se recalcular, e o que está fora da tela não é desenhado */
 .arena{contain:layout}
+.manutp{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:24px;text-align:center;color:#fff;background:radial-gradient(circle at 50% 35%,#1f6b3a,#0b2416 70%)}
+.manutp .mgear{width:min(190px,48vw);height:auto;margin-bottom:6px}
+.manutp .mg1{fill:#ffd43b;stroke:#7a5200;stroke-width:3;transform-origin:100px 100px;animation:mspin 6s linear infinite}
+.manutp .mball{animation:mspin 3s linear infinite reverse}
+.manutp .mwr{filter:drop-shadow(0 4px 4px rgba(0,0,0,.45))}
+@keyframes mspin{to{transform:rotate(360deg)}}
+.manutp h2{margin:4px 0 2px;font-size:clamp(1.6rem,7vw,2.3rem);letter-spacing:1px;color:#ffd43b;text-shadow:0 3px 0 #1a1300}
+.manutp .mmsg{margin:4px 0;font-size:1.05rem;max-width:420px;line-height:1.35}
+.manutp .mtime{margin:0;opacity:.8;font-size:.9rem}
+.manutp small{opacity:.75;margin-top:8px;max-width:360px}
+.manutbar{position:fixed;left:50%;top:6px;transform:translateX(-50%);z-index:9998;background:#e8590c;color:#fff;font-weight:700;font-size:.82rem;padding:6px 12px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.4);max-width:92vw;text-align:center;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.manutp .mg1,.manutp .mball{animation:none}}
 #shop .item{content-visibility:auto;contain-intrinsic-size:auto 66px}
 #market .mk{content-visibility:auto;contain-intrinsic-size:auto 96px}
 #ball{width:min(300px,78vw);height:min(300px,78vw);border:0;background:none;padding:0;cursor:pointer;transition:transform .08s;filter:drop-shadow(0 14px 8px rgba(0,0,0,.35))}
@@ -1262,7 +1274,7 @@ body.lite #vfx,body.lite .arena::before{display:none}
 <button id="parbtn" class="tutagain">Para os pais</button>
 <button id="tutbtn" class="tutagain">Ver o tutorial de novo</button>
 <button id="reset" class="tutagain danger">Reiniciar o jogo</button><p class="rsnote" id="rsnote">Apaga suas bolas, melhorias e coleção. Precisa tocar 3 vezes.</p>
-<button id="optok">Fechar</button><p class="note" id="appver" style="margin-top:10px;text-align:center">Versão 150</p></div></div>
+<button id="optok">Fechar</button><p class="note" id="appver" style="margin-top:10px;text-align:center">Versão 151</p></div></div>
 <div class="prize lvp" id="lvp" hidden><div class="pc" role="dialog" aria-modal="true" aria-labelledby="lvh"><div id="lvbig"></div><h3 id="lvh">Nível 1</h3><div class="lvbar big"><i id="lvi2"></i></div><p class="lvxp" id="lvxp"></p><div class="lvsec">Como ganhar XP</div><ul class="lvhow"><li><span>Chutar a bola</span><b>1 a cada 10 chutes</b></li><li><span>Comprar melhoria</span><b>4 XP</b></li><li><span>Abrir caixa</span><b>8 XP</b></li><li><span>Gol, defesa ou travessão nos minigames</span><b>15 XP</b></li><li><span>Missão feita</span><b>30 XP</b></li><li><span>Conquista</span><b>50 XP</b></li><li><span>Ganhar um X1</span><b>30 XP</b></li><li><span>Avião, bola de ouro, fantasma, bicicleta</span><b>10 XP</b></li><li><span>Ler o jornal do dia</span><b>40 XP</b></li></ul><div class="lvsec">Prêmios</div><p class="lvpr">Cada nível dá bolas. O selo muda de cor nos níveis 10, 25, 50, 75 e 100, e cada um libera um título novo.</p><div class="lvtiers" id="lvtiers"></div><button id="lvok">Fechar</button></div></div>
 <div class="prize flagp" id="flagp" hidden><div class="pc" role="dialog" aria-modal="true" aria-labelledby="flagh"><h3 id="flagh">Bandeira do seu time</h3><p class="flnote">Ela fica balançando na arquibancada dos minigames.</p><svg id="flprev" viewBox="0 0 130 84" aria-hidden="true"></svg><input class="fld" id="flnm" maxlength="16" placeholder="Nome do seu time" autocomplete="off"><div class="flsec">Times</div><div class="flpre" id="flpre"></div><div class="flsec">Desenho</div><div class="flpat" id="flpat"></div><div class="flcols"><label>Cor 1 <input type="color" id="flc1"></label><label>Cor 2 <input type="color" id="flc2"></label></div><div class="flbtns"><button id="flsave" class="pri">Salvar</button><button id="flx">Fechar</button></div></div></div>
 <div class="prize qcp" id="qcp" hidden><div class="pc" role="dialog" aria-modal="true" aria-labelledby="qch"><h3 id="qch">Chat rápido</h3><div class="qcfeed" id="qcfeed" aria-live="polite"></div><div class="qctabs" id="qctabs"><button type="button" data-t="f" class="on">Frases</button><button type="button" data-t="s">Figurinhas</button></div><div class="qcgrid" id="qcgrid"></div><div class="qcstk" id="qcstk" hidden></div><p class="qcnote">Só dá pra mandar frases prontas e figurinhas. Quem está jogando vê a sua mensagem.</p><button id="qcok">Fechar</button></div></div>
@@ -1335,10 +1347,10 @@ body.lite #vfx,body.lite .arena::before{display:none}
 <p class="note" id="admerr" style="color:var(--gold);min-height:1.2em;margin:0 0 8px"></p>
 <div class="note admhelp" style="margin:0 0 12px;text-align:left;line-height:1.5"><b>🎁 Prêmios</b><br>/bola NOME · /sorteio · /ouro · /fantasma · /dobro · /triplo · /chuvabolas · /meteoro · /frangos · /caça · /corrida · /bau (ou /bau SENHA) · /quiz · /congelar<br>
 <b>🎁 Bolas de evento (só o ADM dá)</b><br>/bola natal · /bola medalha · /bola aniversário · /bola ano novo<br>
-<b>📣 Mensagens</b><br>/aviso TEXTO · /mvp NOME · /bomdia · /boanoite · /ranking · /contagem 10 · /emoji 😎 · /confete · /fogos · /festa · /aviao TEXTO · /placar AUREX 6 x 7 GOAT · /manutencao<br>
+<b>📣 Mensagens</b><br>/aviso TEXTO · /mvp NOME · /bomdia · /boanoite · /ranking · /contagem 10 · /emoji 😎 · /confete · /fogos · /festa · /aviao TEXTO · /placar AUREX 6 x 7 GOAT · /manutencaofake (pegadinha)<br>
 <b>😂 Zoeira</b><br>/pausa · /modofrango · /juiz · /cachorro · /multiplicar · /invisivel · /pular · /fugir · /girar · /gigante · /mini · /tremer · /terremoto · /cabeça · /espelho · /tonto · /borrado · /minimundo · /trocar · /cores · /apagao · /mascote · /67 /frango /gol /hexa /arcoiris<br>
 <b>🌦️ Clima</b><br>/sol · /tempestade · /estrelas · /espaco · /lava · /neve · /noite · /chuva<br>
-<b>🛡️ ADM</b><br>/copa (abre) · /copa fechar · /copa 16:00 (marca) ·<br>/online · /info NOME · /banir NOME · /desbanir NOME · /repetir · /limpar<br>/quem · /total · /novos · /bolas NOME · /silenciar NOME · /dessilenciar NOME · /limparcorreio<br><b>📌 Topo</b><br>/fixar TEXTO · /desfixar · /evento 16:00 NOME · /cancelarevento<br><b>🎖️ Títulos</b><br>/titulo NOME TÍTULO · /tirartitulo NOME · /titulo (mostra a lista)<br><b>🎯 Pra uma pessoa</b><br>/dar NOME BOLA · /privado NOME TEXTO<br><b>📊 Enquete</b><br>/enquete PERGUNTA (Sim ou Não)<br><b>⏰ Agendar</b><br>/agendar 16:00 COMANDOS · /agenda (lista) · /desagendar 1 (ou tudo)<br><b>💾 Atalhos</b><br>/atalho NOME COMBO (salva) · /NOME (usa) · /atalho NOME (apaga) · /atalhos (lista)<br><b>💥 Combo</b><br>Escreva vários juntos: <i>/contagem 5 /chuvabolas /fogos</i> (até 6). Com /contagem, os outros esperam a contagem acabar.<br><b>🤫 Sem fala</b><br>Coloque <i>/semfala</i> no combo para não aparecer a faixa automática, ex.: <i>/chuvabolas /semfala /aviso CHOVEU BOLA!</i></div>
+<b>🛡️ ADM</b><br>/copa (abre) · /copa fechar · /copa 16:00 (marca) ·<br>/online · /info NOME · /banir NOME · /desbanir NOME · /repetir · /limpar<br>/manutencao (de verdade: trava o jogo pra todo mundo menos ADM) · /manutencao TEXTO · /manutencao fim<br>/quem · /total · /novos · /bolas NOME · /silenciar NOME · /dessilenciar NOME · /limparcorreio<br><b>📌 Topo</b><br>/fixar TEXTO · /desfixar · /evento 16:00 NOME · /cancelarevento<br><b>🎖️ Títulos</b><br>/titulo NOME TÍTULO · /tirartitulo NOME · /titulo (mostra a lista)<br><b>🎯 Pra uma pessoa</b><br>/dar NOME BOLA · /privado NOME TEXTO<br><b>📊 Enquete</b><br>/enquete PERGUNTA (Sim ou Não)<br><b>⏰ Agendar</b><br>/agendar 16:00 COMANDOS · /agenda (lista) · /desagendar 1 (ou tudo)<br><b>💾 Atalhos</b><br>/atalho NOME COMBO (salva) · /NOME (usa) · /atalho NOME (apaga) · /atalhos (lista)<br><b>💥 Combo</b><br>Escreva vários juntos: <i>/contagem 5 /chuvabolas /fogos</i> (até 6). Com /contagem, os outros esperam a contagem acabar.<br><b>🤫 Sem fala</b><br>Coloque <i>/semfala</i> no combo para não aparecer a faixa automática, ex.: <i>/chuvabolas /semfala /aviso CHOVEU BOLA!</i></div>
 <button id="admok">Fechar</button></div></div>
 <div class="prize" id="storyp" hidden><div class="pc votec story" role="dialog" aria-modal="true" aria-labelledby="storyh"><h3 id="storyh">📜 A história do Bola Clicker</h3><div id="storyl"></div><div class="row" style="gap:8px;justify-content:center;flex-wrap:wrap"><button id="storyok">Fechar</button></div></div></div>
 <div class="prize" id="petp" hidden><div class="pc votec" role="dialog" aria-modal="true" aria-labelledby="peth"><h3 id="peth">🐾 Escolha seu mascote</h3><div id="petl" class="votel"></div><button id="petok">Fechar</button></div></div>
@@ -1632,9 +1644,48 @@ $("ball").addEventListener("click",e=>{if($("ball").dataset.fled){delete $("ball
 let AR=null,ARt=0;const arenaRect=()=>{const n=performance.now();if(!AR||n-ARt>250){AR=$("arena").getBoundingClientRect();ARt=n}return AR};
 $("ball").addEventListener("pointerdown",e=>{if(e.button>0)return;ballKick(e)});
 $("ball").addEventListener("click",e=>{if(e.detail===0)ballKick(e)}); // teclado (Enter ou Espaço)
+// ===== Manutenção de verdade (só o dono liga e desliga: /manutencao, /manutencao TEXTO, /manutencao fim) =====
+// cfg/manut = {on,msg,at}. Quem não é dono nem ADM vê a tela de manutenção e o jogo fica parado (sem renda e sem chute).
+const manutOn=()=>!!(NET.manut&&NET.manut.on);
+const manutBlocked=()=>manutOn()&&!(NET.owner||(NET.adm||[]).includes(NET.me));
+const MANUT_SVG='<svg class="mgear" viewBox="0 0 200 200" aria-hidden="true"><g class="mg1">'+Array.from({length:10},(_,i)=>'<rect x="88" y="14" width="24" height="30" rx="5" transform="rotate('+(i*36)+' 100 100)"/>').join("")+'<circle cx="100" cy="100" r="64"/><circle cx="100" cy="100" r="40" fill="#0d2b18" stroke="none"/></g>'
+ +'<g transform="translate(100 100)"><g class="mball"><use href="#ballsym" x="-34" y="-34" width="68" height="68" style="--base:#f2f2f2;--pt:#1c1c1c"/></g></g>'
+ +'<g class="mwr" transform="translate(156 152) rotate(-45) scale(.6) translate(-100 -134)"><path d="M92 128h16v56a8 8 0 0 1-16 0z" fill="#ced4da" stroke="#495057" stroke-width="3"/><path d="M80 112a26 26 0 0 1 10-38v22h20V74a26 26 0 0 1 10 38z" fill="#ced4da" stroke="#495057" stroke-width="3" stroke-linejoin="round"/><rect x="90" y="108" width="20" height="24" fill="#ced4da" stroke="#495057" stroke-width="3"/></g></svg>';
+let manutInert=[];
+function manutDraw(){let o=$("manutp");const blk=manutBlocked();
+ if(blk){if(!o){o=document.createElement("div");o.id="manutp";o.className="manutp";o.setAttribute("role","alertdialog");o.setAttribute("aria-modal","true");
+   o.innerHTML=MANUT_SVG+'<h2>Jogo em manutenção</h2><p class="mmsg"></p><p class="mtime"></p><small>Seu progresso está salvo. Quando acabar, o jogo volta sozinho.</small>';document.body.appendChild(o);
+   manutInert=[...document.body.children].filter(x=>x!==o&&!x.inert);manutInert.forEach(x=>{try{x.inert=true}catch(e){}})}
+  o.querySelector(".mmsg").textContent=NET.manut.msg||"O criador está deixando o Bola Clicker ainda melhor. Volta já já!";
+  o.querySelector(".mtime").textContent="Começou às "+new Date(NET.manut.at).toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})}
+ else if(o){o.remove();manutInert.forEach(x=>{try{x.inert=false}catch(e){}});manutInert=[]}
+ let f=$("manutbar");const show=manutOn()&&!blk;
+ if(show){if(!f){f=document.createElement("div");f.id="manutbar";f.className="manutbar";document.body.appendChild(f)}f.textContent="🔧 Manutenção ligada: só o dono e os ADMs estão jogando. Para desligar: /manutencao fim"}
+ else if(f)f.remove()}
+// jogo mais liso: as animações de dentro dos desenhos (bandeiras, nuvens, bolas animadas) só rodam quando o desenho aparece na tela.
+// Antes rodavam mais de 200 animações o tempo todo, até dentro dos minigames fechados.
+// Bolas e fundos animados: cada desenho animado ganha seu próprio "relógio" e só anima quando alguma cópia dele aparece na tela
+// (antes as 158 animações das bolas rodavam sempre, mesmo sem nenhuma bola animada à vista).
+(function(){if(!window.IntersectionObserver)return;const box={},vis={};
+ document.querySelectorAll("symbol").forEach(sy=>{if(!sy.id||!sy.querySelector("animate,animateTransform,animateMotion,set"))return;
+  const sv=document.createElementNS("http://www.w3.org/2000/svg","svg");sv.setAttribute("aria-hidden","true");sv.setAttribute("class","symbox");sv.style.cssText="position:absolute;width:0;height:0;overflow:hidden";
+  sv.appendChild(sy);document.body.appendChild(sv);try{sv.pauseAnimations()}catch(_){}box[sy.id]=sv;vis[sy.id]=new Set()});
+ const upd=id=>{try{vis[id].size?box[id].unpauseAnimations():box[id].pauseAnimations()}catch(_){}};
+ const io=new IntersectionObserver(es=>es.forEach(e=>{const id=e.target.__sym;if(!vis[id])return;e.isIntersecting?vis[id].add(e.target):vis[id].delete(e.target);upd(id)}));
+ let uses=[];
+ const scan=()=>{uses=uses.filter(u=>{if(u.isConnected)return true;try{io.unobserve(u)}catch(_){}if(vis[u.__sym]&&vis[u.__sym].delete(u))upd(u.__sym);return false});
+  document.querySelectorAll("use").forEach(u=>{if(u.__sym)return;const id=(u.getAttribute("href")||u.getAttribute("xlink:href")||"").replace(/^#/,"");if(!box[id])return;u.__sym=id;uses.push(u);io.observe(u)})};
+ scan();setInterval(scan,1000)})();
+(function(){if(!window.IntersectionObserver)return;let obs=[];const seen=new WeakSet();
+ const io=new IntersectionObserver(es=>es.forEach(e=>{try{e.isIntersecting?e.target.unpauseAnimations():e.target.pauseAnimations()}catch(_){}}));
+ const scan=()=>{obs=obs.filter(s=>{if(s.isConnected)return true;try{io.unobserve(s)}catch(_){}return false});
+  document.querySelectorAll("animate,animateTransform,animateMotion,set").forEach(a=>{let s=a.ownerSVGElement;while(s&&s.ownerSVGElement)s=s.ownerSVGElement;
+   if(s&&!seen.has(s)&&!s.classList.contains("symbox")){seen.add(s);obs.push(s);try{s.pauseAnimations()}catch(_){}io.observe(s)}})};
+ scan();setInterval(scan,1500)})();
 // bola principal também tem o máximo de 9 cliques por segundo (regra do criador): o que passar disso não dá bolas
 const ballJ={};
 function ballKick(e){
+ if(manutBlocked())return;
  if(fairClick(ballJ,e)!=="ok"){const b=$("ball");b.classList.add("hit");clearTimeout(b._hit);b._hit=setTimeout(()=>b.classList.remove("hit"),80);return}
  const crit=Math.random()<S.crit,v=kickValue()*(crit?5:1);S.balls+=v;S.tot+=v;inc("k");reiClick(e);if(crit){inc("crit");goalFx()}sfxKick(crit);
  const r=arenaRect();
@@ -1945,7 +1996,7 @@ setTimeout(spawnGold,15000);
 let last=Date.now();
 // sem ganhos offline: se o jogo ficou parado (aba fechada, computador dormindo), esse tempo não conta
 setInterval(()=>{const n=Date.now(),dt=Math.min(1,Math.max(0,(n-last)/1000));last=n;
- {const g=cps()*mult()*dt;S.balls+=g;S.tot+=g}draw()},100);
+ if(!manutBlocked()){const g=cps()*mult()*dt;S.balls+=g;S.tot+=g}draw()},100);
 // ===== Som: tudo gerado no navegador (Web Audio), sem arquivos de áudio =====
 // A música só começa depois do primeiro toque na página (regra dos navegadores).
 const SND={ctx:null,mv:.4,sv:.7,kt:"chute",next:0,step:0};
@@ -2556,7 +2607,9 @@ const snap=()=>JSON.stringify(S,(k,v)=>k==="ts"?undefined:v);
    db.doc("cfg/mute").onSnapshot(sn=>{const d=sn.exists?(sn.data()||{}).m:{};NET.mute={};if(d&&typeof d==="object")for(const k in d)if(okId(k))NET.mute[k]=+d[k]||0;renderTrades()},()=>{});
    db.doc("cfg/gtit").onSnapshot(sn=>{const d=sn.exists?(sn.data()||{}).m:{};NET.gtit={};if(d&&typeof d==="object")for(const k in d)if(okId(k)&&Array.isArray(d[k]))NET.gtit[k]=d[k].filter(x=>GTITLES.some(t=>t.id===x)).slice(0,10);lastTit="";renderTitles()},()=>{});
    db.doc("cfg/ban").onSnapshot(sn=>{NET.ban=idList(sn.exists?(sn.data()||{}).ids:[]);renderTrades();renderMarket()},()=>{});
-   db.doc("cfg/adm").onSnapshot(sn=>{NET.adm=idList(sn.exists?(sn.data()||{}).ids:[]);
+   db.doc("cfg/manut").onSnapshot(sn=>{const d=sn.exists?(sn.data()||{}):{},was=manutBlocked();NET.manut=d&&d.on?{on:true,msg:String(d.msg||"").slice(0,140),at:+d.at||Date.now()}:null;manutDraw();
+    if(was&&!manutBlocked()){msg("✅ A manutenção acabou! Bom jogo!");try{sfxReveal(3)}catch(e){}if(window.updAuto)updAuto()}},()=>{});
+   db.doc("cfg/adm").onSnapshot(sn=>{NET.adm=idList(sn.exists?(sn.data()||{}).ids:[]);manutDraw();
     if(NET.owner&&!NET.adm.includes(NET.me))setAdm(NET.me,true); // o dono é ADM
     lastTit="";renderTitles();renderTrades()},()=>{});
    db.collection("inv").onSnapshot(s=>{const p={};s.docs.forEach(x=>{const d=x.data()||{};if(x.id!==NET.me&&invVazio(d))return;p[x.id]=d});NET.players=p;renderTrades();renderMarket();draw()},()=>{});
@@ -3559,6 +3612,7 @@ grassApply();setInterval(grassApply,1500);
   d.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7" fill="none" stroke="#2b1d00" stroke-width="2.6" stroke-linecap="round"/><path d="M20 4v5h-5" fill="none" stroke="#2b1d00" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Versão nova do Bola Clicker!<small>Toque aqui pra atualizar. Seu progresso fica salvo.</small></span>';
   d.onclick=go;document.body.appendChild(d);try{sfxReveal(2)}catch(e){}}
  async function check(){if(shown)return;try{const r=await fetch("version.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;const j=await r.json();if(+j.v>cur())offer(+j.v)}catch(e){}}
+ window.updAuto=async()=>{try{const r=await fetch("version.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;const j=await r.json();if(+j.v>cur()){shown=+j.v;go()}}catch(e){}}; // fim da manutenção: já entra na versão nova
  setTimeout(check,20000);setInterval(check,60000);document.addEventListener("visibilitychange",()=>{if(document.hidden){if(shown)go()}else check()});
 })();
 // 48: Liga dos Times — toda semana (segunda a domingo). Cada dia os times se enfrentam: 200 cliques do time = 1 gol.
@@ -4685,7 +4739,7 @@ async function admCombo(raw){
  if(parts.length<2&&!quiet&&!AT)return admCmd(raw);
  if(!NET.ready||!NET.owner){E.textContent="Só o dono do jogo pode usar comandos.";return}
  if(parts.length>6){E.textContent="No máximo 6 comandos no combo.";return}
- const out=[];for(const p of parts){const nm=norm(p.slice(1).split(" ")[0]);if(["online","repetir","ajuda","info","banir","desbanir","quem","total","novos","bolas","titulo","tirartitulo","silenciar","dessilenciar","limparcorreio","fixar","desfixar","evento","cancelarevento"].includes(nm)){E.textContent="/"+nm+" não entra em combo.";return}
+ const out=[];for(const p of parts){const nm=norm(p.slice(1).split(" ")[0]);if(["manutencao","online","repetir","ajuda","info","banir","desbanir","quem","total","novos","bolas","titulo","tirartitulo","silenciar","dessilenciar","limparcorreio","fixar","desfixar","evento","cancelarevento"].includes(nm)){E.textContent="/"+nm+" não entra em combo.";return}
   if(await admCmd(p,out)!==true){E.textContent="Erro em "+p.split(" ")[0]+": "+E.textContent;return}}
  const cd=out.find(x=>x.c==="contagem"),wait=cd?(+cd.a||10)*1000+200:0,now=Date.now();
  if(AT){const items=out.map((x,i)=>Object.assign({id:now+i,gid:now,at:AT,c:x.c,a:x.a,d:x.c==="contagem"?0:wait},quiet?{q:1}:{}));
@@ -4708,6 +4762,9 @@ async function admCmd(raw,out){
  else if(c==="contagem"){const n=Math.round(+a||10);if(!(n>=3&&n<=60)){E.textContent="Escolha de 3 a 60, ex.: /contagem 10";return}}
  else if(c==="quiz"){/* a pergunta é sorteada aqui e vai igual para todos */}
  else if(c==="caca"){}
+ else if(c==="manutencao"){const off=/^(fim|off|desligar|acabou|sair|tirar)$/i.test(a);
+  try{const v=off?{on:false,msg:"",at:0}:{on:true,msg:a.slice(0,140),at:Date.now()};await NET.db.doc("cfg/manut").set(v);NET.manut=v.on?v:null;manutDraw();
+   E.textContent=off?"✅ Manutenção desligada! Todo mundo volta a jogar (quem estiver com versão velha atualiza sozinho).":"🔧 Manutenção ligada! Só você e os ADMs jogam. Para desligar: /manutencao fim"}catch(e){E.textContent="Não deu para mudar agora."}return}
  else if(c==="fixar"||c==="desfixar"){if(c==="fixar"&&!a){E.textContent="Escreva o aviso, ex.: /fixar Evento sábado às 16h!";return}
   try{await NET.db.doc("cfg/pin").set(c==="fixar"?{t:a.slice(0,140)}:{t:""});NET.pin=c==="fixar"?{t:a.slice(0,140)}:null;topBars();E.textContent=c==="fixar"?"📌 Aviso fixado no topo pra todo mundo!":"Aviso tirado do topo."}catch(e){E.textContent="Não deu para mudar agora."}return}
  else if(c==="evento"||c==="cancelarevento"){if(c==="cancelarevento"){try{await NET.db.doc("cfg/evt").set({at:0,n:""});NET.evt=null;topBars();E.textContent="Evento cancelado."}catch(e){E.textContent="Não deu para cancelar agora."}return}
@@ -4748,7 +4805,7 @@ async function admCmd(raw,out){
  else if(c==="sorteio"){const on=Object.keys(NET.players).filter(p=>p!==NET.me&&okId(p)&&!hiddenP(p)&&Date.now()-(+(NET.players[p]||{}).ts||0)<150000);if(!on.length){E.textContent="Não tem ninguém online para sortear agora 😴";return}
   const b=a?findBall(a):(L=>L[Math.floor(Math.random()*L.length)])(NORMB());if(!b||b.id==="a1"){E.textContent="Não achei essa bola. Ex.: /sorteio fogo (ou só /sorteio)";return}
   SORT={p:on[Math.floor(Math.random()*on.length)],b:b.id}}
- else if(!["ouro","chuvabolas","dobro","tremer","gigante","mini","cabeca","caca","ranking","mascote","fugir","girar","apagao","pausa","congelar","cores","fogos","modofrango","triplo","corrida","meteoro","frangos","espelho","borrado","tonto","minimundo","trocar","invisivel","pular","multiplicar","cachorro","terremoto","juiz","sol","tempestade","estrelas","espaco","lava","bomdia","boanoite","confete","limpar","manutencao","bau"].includes(c)&&!fx.includes(c)){E.textContent="Esse comando não existe. Veja a lista embaixo.";return}
+ else if(!["ouro","chuvabolas","dobro","tremer","gigante","mini","cabeca","caca","ranking","mascote","fugir","girar","apagao","pausa","congelar","cores","fogos","modofrango","triplo","corrida","meteoro","frangos","espelho","borrado","tonto","minimundo","trocar","invisivel","pular","multiplicar","cachorro","terremoto","juiz","sol","tempestade","estrelas","espaco","lava","bomdia","boanoite","confete","limpar","manutencaofake","bau"].includes(c)&&!fx.includes(c)){E.textContent="Esse comando não existe. Veja a lista embaixo.";return}
  const arg=c==="bola"?findBall(a).id:c==="contagem"?String(Math.round(+a||10)):c==="quiz"?String(Math.floor(Math.random()*QUIZ.length)):c==="caca"?Math.round(6+Math.random()*82)+","+Math.round(14+Math.random()*70):c==="sorteio"?SORT.p+","+SORT.b:c==="bau"?(a?"t:"+a.slice(0,30):"n:"+(1+Math.floor(Math.random()*100))):c==="emoji"?a.slice(0,8):(c==="dar"||c==="privado")?DAR:c==="enquete"?a.slice(0,120):a; if(out){out.push({c,a:arg});return true}
  const l=(NET.cmds||[]).concat([{id:Date.now(),c,a:arg}]).slice(-15);
  try{await NET.db.doc("cfg/cmd").set({list:l});$("admin").value="";E.textContent=(c==="dar"||c==="privado")?DARN:"Enviado para todos! 🛡️"}catch(e){E.textContent="Não deu para mandar agora."}
@@ -4916,7 +4973,7 @@ function cmdMore(c,a,m){
  case "confete":confetti(5000);cmdBanner("Chuva de confete! 🎊");return true;
  case "mvp":confetti(5000);sfxReveal(4);cmdBanner("🏅 MVP DO DIA: "+a.slice(0,30)+"! 🏅");return true;
  case "emoji":{const d=fxLayer("snow",9000);for(let i=0;i<40;i++){const x=document.createElement("i");x.textContent=a.slice(0,8);x.style.left=Math.random()*100+"%";x.style.fontSize=(18+Math.random()*18)+"px";x.style.animationDuration=(3+Math.random()*3)+"s";x.style.animationDelay=(-Math.random()*5)+"s";d.appendChild(x)}return true}
- case "manutencao":{const d=fxLayer("pausel maint",6500),x=document.createElement("b");x.innerHTML='🔧 JOGO EM MANUTENÇÃO<small class="bar"><i></i></small>';d.appendChild(x);setTimeout(()=>{x.innerHTML="Brincadeira! 😜<small>Pode jogar!</small>"},5200);return true}
+ case "manutencaofake":{const d=fxLayer("pausel maint",6500),x=document.createElement("b");x.innerHTML='🔧 JOGO EM MANUTENÇÃO<small class="bar"><i></i></small>';d.appendChild(x);setTimeout(()=>{x.innerHTML="Brincadeira! 😜<small>Pode jogar!</small>"},5200);return true}
  case "limpar":{CMD_GEN++;document.querySelectorAll(".fxlayer").forEach(x=>x.remove());document.documentElement.classList.remove("flipall","huerot","swapui");if(main)main.classList.remove("mirror","blurry","dizzy","tinyall","quake");
   ball_.classList.remove("spinall","giant","tiny","invis","bouncy","multi","stolen","chickmode");ball_.style.translate="";ICE=0;FUGIR=0;ball_.querySelectorAll(".ice").forEach(x=>x.remove());$("arena").querySelectorAll(".fakeb").forEach(x=>x.remove());
   setTimeout(()=>cmdBanner("Tudo limpo! 🧹"),50);return true}
