@@ -44,6 +44,10 @@ h1{margin:0;font-size:1.3rem;letter-spacing:.5px}
 @media (prefers-reduced-motion:reduce){.manutp .mg1,.manutp .mball{animation:none}}
 #shop .item{content-visibility:auto;contain-intrinsic-size:auto 66px}
 #market .mk{content-visibility:auto;contain-intrinsic-size:auto 96px}
+.odds li{content-visibility:auto;contain-intrinsic-size:auto 30px}
+.kfxc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;visibility:hidden}
+.pk{content-visibility:auto;contain-intrinsic-size:auto 52px}
+.rk{content-visibility:auto;contain-intrinsic-size:auto 40px}
 #ball{width:min(300px,78vw);height:min(300px,78vw);border:0;background:none;padding:0;cursor:pointer;transition:transform .08s;filter:drop-shadow(0 14px 8px rgba(0,0,0,.35))}
 html,body{touch-action:manipulation}#ball,#ball *{touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #ball:active,#ball.hit{transform:scale(.9) rotate(8deg)}
@@ -107,7 +111,7 @@ html,body{touch-action:manipulation}#ball,#ball *{touch-action:manipulation;-web
 .item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit}
 .item:disabled{opacity:.55}
 #shop .item{position:relative;overflow:hidden;transition:transform .08s,border-color .2s,box-shadow .2s}
-#shop .item::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:100%;transform:scaleX(var(--pg,0));transform-origin:0 50%;background:linear-gradient(90deg,#69db7c,#ffd23f);transition:transform .3s;will-change:transform}
+#shop .item::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:100%;transform:scaleX(var(--pg,0));transform-origin:0 50%;background:linear-gradient(90deg,#69db7c,#ffd23f);transition:transform .3s}
 #shop .item:not(:disabled){border-color:rgba(255,210,63,.6);box-shadow:inset 0 0 0 1px rgba(255,210,63,.18),0 0 12px rgba(255,210,63,.12)}
 #shop .item:not(:disabled)::after{width:100%;background:#ffd23f;opacity:.9}
 #shop .item:not(:disabled):active{transform:scale(.97)}
@@ -1274,7 +1278,7 @@ body.lite #vfx,body.lite .arena::before{display:none}
 <button id="parbtn" class="tutagain">Para os pais</button>
 <button id="tutbtn" class="tutagain">Ver o tutorial de novo</button>
 <button id="reset" class="tutagain danger">Reiniciar o jogo</button><p class="rsnote" id="rsnote">Apaga suas bolas, melhorias e coleção. Precisa tocar 3 vezes.</p>
-<button id="optok">Fechar</button><p class="note" id="appver" style="margin-top:10px;text-align:center">Versão 151</p></div></div>
+<button id="optok">Fechar</button><p class="note" id="appver" style="margin-top:10px;text-align:center">Versão 152</p></div></div>
 <div class="prize lvp" id="lvp" hidden><div class="pc" role="dialog" aria-modal="true" aria-labelledby="lvh"><div id="lvbig"></div><h3 id="lvh">Nível 1</h3><div class="lvbar big"><i id="lvi2"></i></div><p class="lvxp" id="lvxp"></p><div class="lvsec">Como ganhar XP</div><ul class="lvhow"><li><span>Chutar a bola</span><b>1 a cada 10 chutes</b></li><li><span>Comprar melhoria</span><b>4 XP</b></li><li><span>Abrir caixa</span><b>8 XP</b></li><li><span>Gol, defesa ou travessão nos minigames</span><b>15 XP</b></li><li><span>Missão feita</span><b>30 XP</b></li><li><span>Conquista</span><b>50 XP</b></li><li><span>Ganhar um X1</span><b>30 XP</b></li><li><span>Avião, bola de ouro, fantasma, bicicleta</span><b>10 XP</b></li><li><span>Ler o jornal do dia</span><b>40 XP</b></li></ul><div class="lvsec">Prêmios</div><p class="lvpr">Cada nível dá bolas. O selo muda de cor nos níveis 10, 25, 50, 75 e 100, e cada um libera um título novo.</p><div class="lvtiers" id="lvtiers"></div><button id="lvok">Fechar</button></div></div>
 <div class="prize flagp" id="flagp" hidden><div class="pc" role="dialog" aria-modal="true" aria-labelledby="flagh"><h3 id="flagh">Bandeira do seu time</h3><p class="flnote">Ela fica balançando na arquibancada dos minigames.</p><svg id="flprev" viewBox="0 0 130 84" aria-hidden="true"></svg><input class="fld" id="flnm" maxlength="16" placeholder="Nome do seu time" autocomplete="off"><div class="flsec">Times</div><div class="flpre" id="flpre"></div><div class="flsec">Desenho</div><div class="flpat" id="flpat"></div><div class="flcols"><label>Cor 1 <input type="color" id="flc1"></label><label>Cor 2 <input type="color" id="flc2"></label></div><div class="flbtns"><button id="flsave" class="pri">Salvar</button><button id="flx">Fechar</button></div></div></div>
 <div class="prize qcp" id="qcp" hidden><div class="pc" role="dialog" aria-modal="true" aria-labelledby="qch"><h3 id="qch">Chat rápido</h3><div class="qcfeed" id="qcfeed" aria-live="polite"></div><div class="qctabs" id="qctabs"><button type="button" data-t="f" class="on">Frases</button><button type="button" data-t="s">Figurinhas</button></div><div class="qcgrid" id="qcgrid"></div><div class="qcstk" id="qcstk" hidden></div><p class="qcnote">Só dá pra mandar frases prontas e figurinhas. Quem está jogando vê a sua mensagem.</p><button id="qcok">Fechar</button></div></div>
@@ -1347,8 +1351,8 @@ body.lite #vfx,body.lite .arena::before{display:none}
 <p class="note" id="admerr" style="color:var(--gold);min-height:1.2em;margin:0 0 8px"></p>
 <div class="note admhelp" style="margin:0 0 12px;text-align:left;line-height:1.5"><b>🎁 Prêmios</b><br>/bola NOME · /sorteio · /ouro · /fantasma · /dobro · /triplo · /chuvabolas · /meteoro · /frangos · /caça · /corrida · /bau (ou /bau SENHA) · /quiz · /congelar<br>
 <b>🎁 Bolas de evento (só o ADM dá)</b><br>/bola natal · /bola medalha · /bola aniversário · /bola ano novo<br>
-<b>📣 Mensagens</b><br>/aviso TEXTO · /mvp NOME · /bomdia · /boanoite · /ranking · /contagem 10 · /emoji 😎 · /confete · /fogos · /festa · /aviao TEXTO · /placar AUREX 6 x 7 GOAT · /manutencaofake (pegadinha)<br>
-<b>😂 Zoeira</b><br>/pausa · /modofrango · /juiz · /cachorro · /multiplicar · /invisivel · /pular · /fugir · /girar · /gigante · /mini · /tremer · /terremoto · /cabeça · /espelho · /tonto · /borrado · /minimundo · /trocar · /cores · /apagao · /mascote · /67 /frango /gol /hexa /arcoiris<br>
+<b>📣 Mensagens</b><br>/aviso TEXTO · /mvp NOME · /bomdia · /boanoite · /ranking · /contagem 10 · /emoji 😎 · /confete · /fogos · /festa · /aviao TEXTO · /placar AUREX 6 x 7 GOAT<br>
+<b>😂 Zoeira</b><br>/manutencaozueira (pegadinha) · /pausa · /modofrango · /juiz · /cachorro · /multiplicar · /invisivel · /pular · /fugir · /girar · /gigante · /mini · /tremer · /terremoto · /cabeça · /espelho · /tonto · /borrado · /minimundo · /trocar · /cores · /apagao · /mascote · /67 /frango /gol /hexa /arcoiris<br>
 <b>🌦️ Clima</b><br>/sol · /tempestade · /estrelas · /espaco · /lava · /neve · /noite · /chuva<br>
 <b>🛡️ ADM</b><br>/copa (abre) · /copa fechar · /copa 16:00 (marca) ·<br>/online · /info NOME · /banir NOME · /desbanir NOME · /repetir · /limpar<br>/manutencao (de verdade: trava o jogo pra todo mundo menos ADM) · /manutencao TEXTO · /manutencao fim<br>/quem · /total · /novos · /bolas NOME · /silenciar NOME · /dessilenciar NOME · /limparcorreio<br><b>📌 Topo</b><br>/fixar TEXTO · /desfixar · /evento 16:00 NOME · /cancelarevento<br><b>🎖️ Títulos</b><br>/titulo NOME TÍTULO · /tirartitulo NOME · /titulo (mostra a lista)<br><b>🎯 Pra uma pessoa</b><br>/dar NOME BOLA · /privado NOME TEXTO<br><b>📊 Enquete</b><br>/enquete PERGUNTA (Sim ou Não)<br><b>⏰ Agendar</b><br>/agendar 16:00 COMANDOS · /agenda (lista) · /desagendar 1 (ou tudo)<br><b>💾 Atalhos</b><br>/atalho NOME COMBO (salva) · /NOME (usa) · /atalho NOME (apaga) · /atalhos (lista)<br><b>💥 Combo</b><br>Escreva vários juntos: <i>/contagem 5 /chuvabolas /fogos</i> (até 6). Com /contagem, os outros esperam a contagem acabar.<br><b>🤫 Sem fala</b><br>Coloque <i>/semfala</i> no combo para não aparecer a faixa automática, ex.: <i>/chuvabolas /semfala /aviso CHOVEU BOLA!</i></div>
 <button id="admok">Fechar</button></div></div>
@@ -1610,7 +1614,7 @@ function undoBought(){
 }
 migrate();undoBought();
 const $=id=>document.getElementById(id);
-const fmt=n=>n>=1e18?(n/1e18).toFixed(2)+" quint":n>=1e15?(n/1e15).toFixed(2)+" quatri":n>=1e12?(n/1e12).toFixed(2)+" tri":n>=1e9?(n/1e9).toFixed(2)+" bi":n>=1e6?(n/1e6).toFixed(2)+" mi":n>=1e4?Math.floor(n).toLocaleString("pt-BR"):Math.floor(n).toString();
+const fmt=n=>n>=1e18?(n/1e18).toFixed(2)+" quint":n>=1e15?(n/1e15).toFixed(2)+" quatri":n>=1e12?(n/1e12).toFixed(2)+" tri":n>=1e9?(n/1e9).toFixed(2)+" bi":n>=1e6?(n/1e6).toFixed(2)+" mi":n>=1e4?String(Math.floor(n)).replace(/\B(?=(\d{3})+(?!\d))/g,"."):Math.floor(n).toString();
 const own=i=>S.owned[i.id]||0;
 const cost=i=>Math.ceil(i.base*Math.pow(1.2,own(i))*(1-Math.min(.5,S.disc))); // cada compra deixa a próxima 20% mais cara
 const STAR_BONUS=.3; // cada estrela: +30% em tudo
@@ -1641,7 +1645,8 @@ function ballFlee(e){if(Date.now()>=FUGIR)return false;if(Math.random()<.25)retu
 $("ball").addEventListener("pointerdown",e=>{if(ballFlee(e))$("ball").dataset.fled="1";else delete $("ball").dataset.fled},true);
 $("ball").addEventListener("click",e=>{if($("ball").dataset.fled){delete $("ball").dataset.fled;e.stopImmediatePropagation();e.preventDefault()}},true);
 // o chute conta no instante do toque (pointerdown): no tablet o "click" atrasa e some quando a pessoa toca muito rápido
-let AR=null,ARt=0;const arenaRect=()=>{const n=performance.now();if(!AR||n-ARt>250){AR=$("arena").getBoundingClientRect();ARt=n}return AR};
+let AR=null;const arenaRect=()=>AR||(AR=$("arena").getBoundingClientRect()); // guarda a posição; só mede de novo se rolar a tela, mudar o tamanho ou 1x por segundo
+addEventListener("scroll",()=>{AR=null},{passive:true,capture:true});addEventListener("resize",()=>{AR=null});setInterval(()=>{AR=null},1000);
 $("ball").addEventListener("pointerdown",e=>{if(e.button>0)return;ballKick(e)});
 $("ball").addEventListener("click",e=>{if(e.detail===0)ballKick(e)}); // teclado (Enter ou Espaço)
 // ===== Manutenção de verdade (só o dono liga e desliga: /manutencao, /manutencao TEXTO, /manutencao fim) =====
@@ -1664,6 +1669,9 @@ function manutDraw(){let o=$("manutp");const blk=manutBlocked();
  else if(f)f.remove()}
 // jogo mais liso: as animações de dentro dos desenhos (bandeiras, nuvens, bolas animadas) só rodam quando o desenho aparece na tela.
 // Antes rodavam mais de 200 animações o tempo todo, até dentro dos minigames fechados.
+// a página mudou? (não conta os números do chute nem os efeitos, que mudam o tempo todo)
+const PAGE_DIRTY={sym:true,smil:true};
+try{new MutationObserver(ms=>{for(const m of ms){const t=m.target;if(t.id==="arena"||(t.classList&&(t.classList.contains("fxlayer")||t.classList.contains("pop"))))continue;PAGE_DIRTY.sym=PAGE_DIRTY.smil=true;break}}).observe(document.body,{childList:true,subtree:true})}catch(_){}
 // Bolas e fundos animados: cada desenho animado ganha seu próprio "relógio" e só anima quando alguma cópia dele aparece na tela
 // (antes as 158 animações das bolas rodavam sempre, mesmo sem nenhuma bola animada à vista).
 (function(){if(!window.IntersectionObserver)return;const box={},vis={};
@@ -1675,13 +1683,16 @@ function manutDraw(){let o=$("manutp");const blk=manutBlocked();
  let uses=[];
  const scan=()=>{uses=uses.filter(u=>{if(u.isConnected)return true;try{io.unobserve(u)}catch(_){}if(vis[u.__sym]&&vis[u.__sym].delete(u))upd(u.__sym);return false});
   document.querySelectorAll("use").forEach(u=>{if(u.__sym)return;const id=(u.getAttribute("href")||u.getAttribute("xlink:href")||"").replace(/^#/,"");if(!box[id])return;u.__sym=id;uses.push(u);io.observe(u)})};
- scan();setInterval(scan,1000)})();
+ scan();setInterval(()=>{if(PAGE_DIRTY.sym){PAGE_DIRTY.sym=false;scan();try{ballSymLiteAll()}catch(_){}}for(const id in box)if(!vis[id].size)try{if(!box[id].animationsPaused())box[id].pauseAnimations()}catch(_){}},1000)})(); // o navegador "liga" o relógio quando a página termina de carregar: desliga de novo os que não aparecem
 (function(){if(!window.IntersectionObserver)return;let obs=[];const seen=new WeakSet();
  const io=new IntersectionObserver(es=>es.forEach(e=>{try{e.isIntersecting?e.target.unpauseAnimations():e.target.pauseAnimations()}catch(_){}}));
  const scan=()=>{obs=obs.filter(s=>{if(s.isConnected)return true;try{io.unobserve(s)}catch(_){}return false});
   document.querySelectorAll("animate,animateTransform,animateMotion,set").forEach(a=>{let s=a.ownerSVGElement;while(s&&s.ownerSVGElement)s=s.ownerSVGElement;
    if(s&&!seen.has(s)&&!s.classList.contains("symbox")){seen.add(s);obs.push(s);try{s.pauseAnimations()}catch(_){}io.observe(s)}})};
- scan();setInterval(scan,1500)})();
+ scan();setInterval(()=>{if(PAGE_DIRTY.smil){PAGE_DIRTY.smil=false;scan()}},1500)})();
+// quando outro jogador salva: junta os redesenhos (no máximo 1 a cada 300 ms), em vez de redesenhar a cada salvamento
+let invRT=0,invRL=0;function invRedraw(){const n=Date.now(),go=()=>{invRT=0;invRL=Date.now();renderTrades();renderMarket();draw()};
+ if(invRT)return;const w=300-(n-invRL);if(w<=0)go();else invRT=setTimeout(go,w)}
 // bola principal também tem o máximo de 9 cliques por segundo (regra do criador): o que passar disso não dá bolas
 const ballJ={};
 function ballKick(e){
@@ -1863,7 +1874,24 @@ DROPS.splice(0,DROPS.length,...BALLS.filter(b=>b.id!=="b0"));
 BBOX.forEach(k=>{k.w=DROPS.map(b=>k.wm[b.id])});
 const AURA_FL=`<path d="M60 195C-45 120 -20 95 -5 60.0C0 95 15 85 15 45.0C25 70 40 40 35 0.0C55 30 65 -10 60 -35.0C80 -5 95 -30 100 -58.0C105 -30 120 -5 140 -35.0C135 -10 145 30 165 0.0C160 40 175 70 185 45.0C185 85 200 95 205 60.0C220 95 245 120 140 195Z" fill="url(#flp)"><animate attributeName="d" values="M60 195C-45 120 -20 95 -5 60.0C0 95 15 85 15 45.0C25 70 40 40 35 0.0C55 30 65 -10 60 -35.0C80 -5 95 -30 100 -58.0C105 -30 120 -5 140 -35.0C135 -10 145 30 165 0.0C160 40 175 70 185 45.0C185 85 200 95 205 60.0C220 95 245 120 140 195Z;M60 195C-45 120 -20 95 -5 58.4C0 95 15 85 15 36.2C25 70 40 40 35 -5.0C55 30 65 -10 60 -30.0C80 -5 95 -30 100 -49.2C105 -30 120 -5 140 -33.4C135 -10 145 30 165 -7.6C160 40 175 70 185 37.6C185 85 200 95 205 62.0C220 95 245 120 140 195Z;M60 195C-45 120 -20 95 -5 60.0C0 95 15 85 15 45.0C25 70 40 40 35 0.0C55 30 65 -10 60 -35.0C80 -5 95 -30 100 -58.0C105 -30 120 -5 140 -35.0C135 -10 145 30 165 0.0C160 40 175 70 185 45.0C185 85 200 95 205 60.0C220 95 245 120 140 195Z" dur=".8s" repeatCount="indefinite"/></path><path d="M70 195C-13.1 117.8 6.4 98.3 18.1 71.0C22.0 98.3 33.7 90.5 33.7 59.3C41.5 78.8 53.2 55.4 49.3 24.2C64.9 47.6 72.7 16.4 68.8 -3.1C84.4 20.3 96.1 0.8 100.0 -21.0C103.9 0.8 115.6 20.3 131.2 -3.1C127.3 16.4 135.1 47.6 150.7 24.2C146.8 55.4 158.5 78.8 166.3 59.3C166.3 90.5 178.0 98.3 181.9 71.0C193.6 98.3 213.1 117.8 130 195Z" fill="#e599f7" opacity=".85"><animate attributeName="d" values="M70 195C-13.1 117.8 6.4 98.3 18.1 71.0C22.0 98.3 33.7 90.5 33.7 59.3C41.5 78.8 53.2 55.4 49.3 24.2C64.9 47.6 72.7 16.4 68.8 -3.1C84.4 20.3 96.1 0.8 100.0 -21.0C103.9 0.8 115.6 20.3 131.2 -3.1C127.3 16.4 135.1 47.6 150.7 24.2C146.8 55.4 158.5 78.8 166.3 59.3C166.3 90.5 178.0 98.3 181.9 71.0C193.6 98.3 213.1 117.8 130 195Z;M70 195C-13.1 117.8 6.4 98.3 18.1 77.8C22.0 98.3 33.7 90.5 33.7 63.4C41.5 78.8 53.2 55.4 49.3 20.5C64.9 47.6 72.7 16.4 68.8 -10.0C84.4 20.3 96.1 0.8 100.0 -22.6C103.9 0.8 115.6 20.3 131.2 2.6C127.3 16.4 135.1 47.6 150.7 30.1C146.8 55.4 158.5 78.8 166.3 58.0C166.3 90.5 178.0 98.3 181.9 64.1C193.6 98.3 213.1 117.8 130 195Z;M70 195C-13.1 117.8 6.4 98.3 18.1 71.0C22.0 98.3 33.7 90.5 33.7 59.3C41.5 78.8 53.2 55.4 49.3 24.2C64.9 47.6 72.7 16.4 68.8 -3.1C84.4 20.3 96.1 0.8 100.0 -21.0C103.9 0.8 115.6 20.3 131.2 -3.1C127.3 16.4 135.1 47.6 150.7 24.2C146.8 55.4 158.5 78.8 166.3 59.3C166.3 90.5 178.0 98.3 181.9 71.0C193.6 98.3 213.1 117.8 130 195Z" dur=".6s" repeatCount="indefinite"/></path>`;
 const HAL={aura:{vb:"-50 -60 300 300",pre:AURA_FL,post:""}};
-const icon=(b,z)=>b.h&&HAL[b.h]?`<svg viewBox="${HAL[b.h].vb}" width="${z||20}" height="${z||20}" style="--base:${b.base};--pt:${b.pt};${b.m||""};vertical-align:middle;margin-right:4px;flex:none;overflow:visible" aria-hidden="true">${HAL[b.h].pre}<use href="#ballsym" x="0" y="0" width="200" height="200"/>${b.fx?`<use href="#fx-${b.fx}" x="0" y="0" width="200" height="200"/>`:""}${HAL[b.h].post}</svg>`:b.em||(b.img?(b.photo?`<img class="phb" src="${b.img}" width="${z||20}" height="${z||20}" alt="" style="vertical-align:middle;margin-right:4px;flex:none">`:`<img class="adm" src="${b.img}" width="${z||20}" height="${z||20}" alt="" style="vertical-align:middle;margin-right:4px;flex:none;filter:drop-shadow(0 0 4px #ffd23f)">`):`<svg viewBox="0 0 200 200" width="${z||20}" height="${z||20}" style="--base:${b.base};--pt:${b.pt};${b.m||""};vertical-align:middle;margin-right:4px;flex:none" aria-hidden="true">${b.bg?`<use href="#bg-${b.bg}"/>`:""}<use href="#ballsym"/>${b.fx?`<use href="#fx-${b.fx}"/>`:""}${Number.isInteger(b.num)&&b.num>=0&&b.num<100?`<text x="100" y="${b.num>9?122:124}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="${b.num>9?62:70}" fill="#fff" stroke="#111" stroke-width="7" paint-order="stroke" letter-spacing="-2">${b.num}</text>`:""}</svg>`);
+// ===== Bola leve =====
+// O desenho da bola (#ballsym) tem 1002 pecinhas: todas as variações (couro, areia, LED, neve...) ficam escondidas lá dentro
+// com opacidade 0. Cada ícone de bola copiava as 1002! Aqui cada estilo de bola ganha um desenho só com as camadas que ele usa.
+const BSYM={};let BSYM_N=0;
+function ballSymKey(act){return [...act].sort().join(",")}
+function ballSymAct(m){const act=new Set();String(m||"").replace(/--([\w-]+)\s*:\s*([^;]+)/g,(_,k,v)=>{v=v.trim();if(!/^[\d.]+$/.test(v)||parseFloat(v)>0)act.add(k);return _});return act}
+function ballSymFor(act){const key=ballSymKey(act);if(BSYM[key])return BSYM[key];
+ const src=document.getElementById("ballsym");if(!src)return "ballsym";
+ const c=src.cloneNode(true);const id="bsl"+(BSYM_N++);c.id=id;
+ c.querySelectorAll("[style]").forEach(e=>{const mm=/opacity:\s*var\(--([\w-]+),\s*0\)/.exec(e.getAttribute("style")||"");if(mm&&!act.has(mm[1]))e.remove()});
+ c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id")); // usa os clipPaths do desenho original
+ src.parentNode.appendChild(c);BSYM[key]=id;return id}
+const bsym=b=>ballSymFor(ballSymAct(b&&b.m));
+// desenhos fixos da página (logo, minigames, X1, Copa...) também ficam leves; a bola grande principal continua com o desenho completo
+function ballSymLiteAll(){document.querySelectorAll('use[href="#ballsym"]').forEach(u=>{if(u.closest("#ball"))return;
+ const cs=getComputedStyle(u),act=new Set();(ballSymLiteAll.L||(ballSymLiteAll.L=[...new Set([...document.getElementById("ballsym").querySelectorAll("[style]")].map(e=>(/opacity:\s*var\(--([\w-]+),\s*0\)/.exec(e.getAttribute("style")||"")||[])[1]).filter(Boolean))])).forEach(k=>{const v=parseFloat(cs.getPropertyValue("--"+k));if(v>0)act.add(k)});
+ u.setAttribute("href","#"+ballSymFor(act))})}
+const icon=(b,z)=>b.h&&HAL[b.h]?`<svg viewBox="${HAL[b.h].vb}" width="${z||20}" height="${z||20}" style="--base:${b.base};--pt:${b.pt};${b.m||""};vertical-align:middle;margin-right:4px;flex:none;overflow:visible" aria-hidden="true">${HAL[b.h].pre}<use href="#${bsym(b)}" x="0" y="0" width="200" height="200"/>${b.fx?`<use href="#fx-${b.fx}" x="0" y="0" width="200" height="200"/>`:""}${HAL[b.h].post}</svg>`:b.em||(b.img?(b.photo?`<img class="phb" src="${b.img}" width="${z||20}" height="${z||20}" alt="" style="vertical-align:middle;margin-right:4px;flex:none">`:`<img class="adm" src="${b.img}" width="${z||20}" height="${z||20}" alt="" style="vertical-align:middle;margin-right:4px;flex:none;filter:drop-shadow(0 0 4px #ffd23f)">`):`<svg viewBox="0 0 200 200" width="${z||20}" height="${z||20}" style="--base:${b.base};--pt:${b.pt};${b.m||""};vertical-align:middle;margin-right:4px;flex:none" aria-hidden="true">${b.bg?`<use href="#bg-${b.bg}"/>`:""}<use href="#${bsym(b)}"/>${b.fx?`<use href="#fx-${b.fx}"/>`:""}${Number.isInteger(b.num)&&b.num>=0&&b.num<100?`<text x="100" y="${b.num>9?122:124}" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="${b.num>9?62:70}" fill="#fff" stroke="#111" stroke-width="7" paint-order="stroke" letter-spacing="-2">${b.num}</text>`:""}</svg>`);
 const MAXB=20; // limite de bolas iguais por jogador
 const pct=v=>v.toLocaleString("pt-BR",{maximumFractionDigits:v<1?2:v<10?1:0})+"%";
 const ball=id=>BALLS.find(b=>b.id===id);
@@ -1884,6 +1912,7 @@ function applySkin(){
  ["plastic","leather","metal","stars","facets","sand","grass","glow","goldsh","mud","half","fire","arc","six","band","hsw","tang","zebra","net","snow","cards","led","waves","sweep","bezel","stone","confetti","jewels","ten"].forEach(v=>el.style.setProperty("--"+v,0));
  el.style.removeProperty("--ledc");(b.m||"").split(";").filter(Boolean).forEach(x=>{const q=x.split(":");el.style.setProperty(q[0],q[1])});
  el.style.setProperty("--base",b.base);el.style.setProperty("--pt",b.pt);
+ {const u=el.querySelector("svg use:not(#ballbg):not(#ballfx)");if(u)u.setAttribute("href","#"+bsym(b))} // bola grande também leve (só as camadas que ela usa)
  const fx=$("ballfx");if(b.fx){fx.setAttribute("href","#fx-"+b.fx);fx.style.display=""}else fx.style.display="none";
  const bgx=$("ballbg");if(b.bg){bgx.setAttribute("href","#bg-"+b.bg);bgx.style.display=""}else bgx.style.display="none";
  el.classList.toggle("adm",b.id==="a1");im.classList.toggle("adm",b.id==="a1");
@@ -2405,6 +2434,7 @@ const STL={open:"Esperando resposta",accepted:"Aceita",done:"Concluída",decline
 let lastPlayers="";
 function renderTrades(){
  const w=$("trades");if(!w)return;
+ if(w.dataset.init&&w.hidden)return; // aba fechada: redesenha quando abrir (jogo mais liso)
  if(!w.dataset.init){
   w.dataset.init=1;
   w.innerHTML=`<h2 class="gh">Trocas</h2>
@@ -2612,7 +2642,7 @@ const snap=()=>JSON.stringify(S,(k,v)=>k==="ts"?undefined:v);
    db.doc("cfg/adm").onSnapshot(sn=>{NET.adm=idList(sn.exists?(sn.data()||{}).ids:[]);manutDraw();
     if(NET.owner&&!NET.adm.includes(NET.me))setAdm(NET.me,true); // o dono é ADM
     lastTit="";renderTitles();renderTrades()},()=>{});
-   db.collection("inv").onSnapshot(s=>{const p={};s.docs.forEach(x=>{const d=x.data()||{};if(x.id!==NET.me&&invVazio(d))return;p[x.id]=d});NET.players=p;renderTrades();renderMarket();draw()},()=>{});
+   db.collection("inv").onSnapshot(s=>{const p={};s.docs.forEach(x=>{const d=x.data()||{};if(x.id!==NET.me&&invVazio(d))return;p[x.id]=d});NET.players=p;invRedraw()},()=>{});
    db.collection("ads").onSnapshot(s=>{NET.ads=s.docs.map(x=>Object.assign({},x.data(),{id:x.id}));renderTrades();processTrades()},()=>{});
    db.collection("trades").onSnapshot(s=>{const all=s.docs.map(x=>Object.assign({},x.data(),{id:x.id}));NET.bids=all.filter(x=>x.kind==="bid");NET.trades=all.filter(x=>x.kind!=="bid");renderTrades();processTrades()},()=>{});
   }
@@ -2799,10 +2829,27 @@ setInterval(()=>{if(!NET.ready||NET.ro)return;const k=Math.floor(Math.log(S.tot+
 function netKick(x,w){const nn=performance.now();if(nn-(netKick.t||0)<160)return;netKick.t=nn;if(LITE||(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))return;const m=document.querySelector("#goalfx .mesh");if(!m||!m.animate)return;const k=(x<w/2?1:-1)*(2+Math.random()*1.5);
  m.animate([{transform:"none"},{transform:`scale(1.015,1.09) skewX(${k}deg)`,offset:.3},{transform:`scale(.995,.97) skewX(${-k/3}deg)`,offset:.65},{transform:"none"}],{duration:450,easing:"ease-out"})}
 // faíscas e pedacinhos de grama saindo de onde você chutou
-function kickFx(x,y,crit){if(LITE||(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))return;const a=$("arena"),nk=a.getElementsByClassName("kp").length;if(nk>24)return;
- const n=crit?14:nk>10?2:6;for(let i=0;i<n;i++){const p=document.createElement("i"),ang=Math.random()*Math.PI*2,d=(crit?50:30)+Math.random()*(crit?70:45);
-  p.className="kp"+(crit?" g":i%2?" gr":"");p.style.left=x+"px";p.style.top=y+"px";p.style.setProperty("--dx",(Math.cos(ang)*d).toFixed(1)+"px");p.style.setProperty("--dy",(Math.sin(ang)*d-18).toFixed(1)+"px");p.style.setProperty("--r",Math.floor(Math.random()*360)+"deg");
-  a.appendChild(p);setTimeout(()=>p.remove(),600)}}
+// faíscas do chute desenhadas num "quadro" só (canvas): antes cada faísca era um elemento da página
+// (até 24 ao mesmo tempo, cada um virando uma camada da tela). Mesmo visual, bem mais leve.
+const KFX={c:null,x:null,P:[],raf:0,w:0,h:0,dpr:1,spr:null};
+function kfxSprites(d){const mk=(w,h,f)=>{const c=document.createElement("canvas");c.width=Math.ceil(w*d);c.height=Math.ceil(h*d);const g=c.getContext("2d");g.scale(d,d);f(g);return c};
+ const glow=(g,col,blur,draw)=>{g.shadowColor=col;g.shadowBlur=blur*d;draw()};
+ return {w:mk(26,26,g=>glow(g,"rgba(255,255,255,.9)",6,()=>{g.fillStyle="#fff";g.beginPath();g.arc(13,13,3.5,0,7);g.fill()})),
+  gr:mk(24,28,g=>glow(g,"rgba(140,233,154,.8)",4,()=>{g.fillStyle="#8ce99a";g.beginPath();if(g.roundRect)g.roundRect(9.5,9.5,5,9,2);else g.rect(9.5,9.5,5,9);g.fill()})),
+  g:mk(34,34,g=>glow(g,"#ffd23f",9,()=>{g.fillStyle="#ffd23f";g.beginPath();g.arc(17,17,3.5,0,7);g.fill()}))}}
+function kfxSize(){const a=$("arena"),c=KFX.c;if(!a||!c)return;const d=Math.min(2,window.devicePixelRatio||1),w=a.clientWidth,h=a.clientHeight;
+ if(w!==KFX.w||h!==KFX.h||d!==KFX.dpr){KFX.w=w;KFX.h=h;c.width=Math.round(w*d);c.height=Math.round(h*d);if(d!==KFX.dpr||!KFX.spr){KFX.dpr=d;KFX.spr=kfxSprites(d)}KFX.x.setTransform(d,0,0,d,0,0)}}
+function kfxInit(){if(KFX.c)return true;const a=$("arena");if(!a)return false;const c=document.createElement("canvas");c.className="kfxc";c.setAttribute("aria-hidden","true");a.appendChild(c);
+ KFX.c=c;KFX.x=c.getContext("2d");KFX.dpr=0;kfxSize();try{new ResizeObserver(kfxSize).observe(a)}catch(e){addEventListener("resize",kfxSize)}return true}
+function kfxLoop(t){const P=KFX.P,g=KFX.x;g.clearRect(0,0,KFX.w,KFX.h);const now=performance.now();
+ for(let i=P.length-1;i>=0;i--){const p=P[i],k=(now-p.t0)/550;if(k>=1){P.splice(i,1);continue}const e=1-Math.pow(1-k,1.7); // igual ao "ease-out" de antes
+  const sp=KFX.spr[p.k],sc=(1-.8*e)*KFX.dpr,a=p.r*e,co=Math.cos(a)*sc,si=Math.sin(a)*sc,w=sp.width/KFX.dpr,h=sp.height/KFX.dpr;g.globalAlpha=1-e;
+  g.setTransform(co,si,-si,co,(p.x+p.dx*e)*KFX.dpr,(p.y+p.dy*e)*KFX.dpr);g.drawImage(sp,-w/2,-h/2,w,h)}
+ g.setTransform(KFX.dpr,0,0,KFX.dpr,0,0);g.globalAlpha=1;if(P.length)KFX.raf=requestAnimationFrame(kfxLoop);else{KFX.raf=0;KFX.c.style.visibility="hidden"}}
+function kickFx(x,y,crit){if(LITE||(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))return;if(!kfxInit())return;const nk=KFX.P.length;if(nk>24)return;
+ const n=crit?14:nk>10?2:6,t0=performance.now();for(let i=0;i<n;i++){const ang=Math.random()*Math.PI*2,d=(crit?50:30)+Math.random()*(crit?70:45);
+  KFX.P.push({x,y,dx:Math.cos(ang)*d,dy:Math.sin(ang)*d-18,r:Math.random()*Math.PI*2,k:crit?"g":i%2?"gr":"w",t0})}
+ KFX.c.style.visibility="visible";if(!KFX.raf)KFX.raf=requestAnimationFrame(kfxLoop)}
 function goalFx(){["goalfx","goaltxt"].forEach(id=>{const g=$(id);g.classList.remove("on");void g.offsetWidth;g.classList.add("on")})}
 
 // ----- pênalti -----
@@ -4750,7 +4797,7 @@ async function admCombo(raw){
 }
 async function admCmd(raw,out){
  const E=$("admerr");if(!raw.startsWith("/"))raw="/"+raw;if(!NET.ready||!NET.owner){E.textContent="Só o dono do jogo pode usar comandos.";return}
- const sp=raw.slice(1).trim(),i=sp.indexOf(" "),c=norm(i<0?sp:sp.slice(0,i)).replace(/ /g,""),a=(i<0?"":sp.slice(i+1)).trim().slice(0,200);
+ const sp=raw.slice(1).trim(),i=sp.indexOf(" "),c=(x=>({manutencaozueira:"manutencaofake",manutencaozoeira:"manutencaofake"})[x]||x)(norm(i<0?sp:sp.slice(0,i)).replace(/ /g,"")),a=(i<0?"":sp.slice(i+1)).trim().slice(0,200);
  const fx=["67","frango","neve","noite","chuva","gol","hexa","arcoiris","festa","bicicleta"];
  if(c==="ajuda"||!c){E.textContent=CMD_HELP;return}
  if(c==="bola"){const b=findBall(a);if(!b){E.textContent="Não achei essa bola. Escreva o nome, ex.: /bola fogo";return}if(b.id==="a1"){E.textContent="A bola do ADM não pode ser dada para todos.";return}}
@@ -5322,13 +5369,14 @@ function showTab(k){
  document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===k));
  $("trbtn").setAttribute("aria-pressed",k==="trofeus");
  if(k==="colecao")renderStadiums(true);
- if(k==="trocas"){lastTit="";renderTitles()}
+ if(k==="trocas"){lastTit="";renderTitles();renderTrades()}
  if(k==="trofeus")renderTrophies(true);
  if(k==="bolas")renderBolsa(true);
 }
 document.querySelectorAll("#tabs button").forEach(b=>{b.onclick=()=>showTab(b.dataset.tab)});
 showTab("loja");
 render();renderSeason();renderBoxes();renderMarket();renderBallBoxes();applySkin();renderTrades();draw();
+try{ballSymLiteAll()}catch(e){}
 </script>
 
 </html>
