@@ -1278,7 +1278,7 @@ body.lite #vfx,body.lite .arena::before{display:none}
 <button id="parbtn" class="tutagain">Para os pais</button>
 <button id="tutbtn" class="tutagain">Ver o tutorial de novo</button>
 <button id="reset" class="tutagain danger">Reiniciar o jogo</button><p class="rsnote" id="rsnote">Apaga suas bolas, melhorias e coleção. Precisa tocar 3 vezes.</p>
-<button id="optok">Fechar</button><p class="note" id="appver" style="margin-top:10px;text-align:center">Versão 156</p></div></div>
+<button id="optok">Fechar</button><p class="note" id="appver" style="margin-top:10px;text-align:center">Versão 157</p></div></div>
 <div class="prize lvp" id="lvp" hidden><div class="pc" role="dialog" aria-modal="true" aria-labelledby="lvh"><div id="lvbig"></div><h3 id="lvh">Nível 1</h3><div class="lvbar big"><i id="lvi2"></i></div><p class="lvxp" id="lvxp"></p><div class="lvsec">Como ganhar XP</div><ul class="lvhow"><li><span>Chutar a bola</span><b>1 a cada 10 chutes</b></li><li><span>Comprar melhoria</span><b>4 XP</b></li><li><span>Abrir caixa</span><b>8 XP</b></li><li><span>Gol, defesa ou travessão nos minigames</span><b>15 XP</b></li><li><span>Missão feita</span><b>30 XP</b></li><li><span>Conquista</span><b>50 XP</b></li><li><span>Ganhar um X1</span><b>30 XP</b></li><li><span>Avião, bola de ouro, fantasma, bicicleta</span><b>10 XP</b></li><li><span>Ler o jornal do dia</span><b>40 XP</b></li></ul><div class="lvsec">Prêmios</div><p class="lvpr">Cada nível dá bolas. O selo muda de cor nos níveis 10, 25, 50, 75 e 100, e cada um libera um título novo.</p><div class="lvtiers" id="lvtiers"></div><button id="lvok">Fechar</button></div></div>
 <div class="prize flagp" id="flagp" hidden><div class="pc" role="dialog" aria-modal="true" aria-labelledby="flagh"><h3 id="flagh">Bandeira do seu time</h3><p class="flnote">Ela fica balançando na arquibancada dos minigames.</p><svg id="flprev" viewBox="0 0 130 84" aria-hidden="true"></svg><input class="fld" id="flnm" maxlength="16" placeholder="Nome do seu time" autocomplete="off"><div class="flsec">Times</div><div class="flpre" id="flpre"></div><div class="flsec">Desenho</div><div class="flpat" id="flpat"></div><div class="flcols"><label>Cor 1 <input type="color" id="flc1"></label><label>Cor 2 <input type="color" id="flc2"></label></div><div class="flbtns"><button id="flsave" class="pri">Salvar</button><button id="flx">Fechar</button></div></div></div>
 <div class="prize qcp" id="qcp" hidden><div class="pc" role="dialog" aria-modal="true" aria-labelledby="qch"><h3 id="qch">Chat rápido</h3><div class="qcfeed" id="qcfeed" aria-live="polite"></div><div class="qctabs" id="qctabs"><button type="button" data-t="f" class="on">Frases</button><button type="button" data-t="s">Figurinhas</button></div><div class="qcgrid" id="qcgrid"></div><div class="qcstk" id="qcstk" hidden></div><p class="qcnote">Só dá pra mandar frases prontas e figurinhas. Quem está jogando vê a sua mensagem.</p><button id="qcok">Fechar</button></div></div>
@@ -4239,12 +4239,14 @@ function fairClick(st,e){const ev=e&&typeof e==="object"?e:null,t=ev?ev.timeStam
  if(!bot&&v.length>=30){const m=v.reduce((a,x)=>a+x,0)/v.length;if(m<=200)bot=Math.sqrt(v.reduce((a,x)=>a+(x-m)*(x-m),0)/v.length)<3}
  if(bot)return "robo";
  st.K=(st.K||[]).filter(x=>n-x<1000);if(st.K.length>=CLK_MAX)return "max";st.K.push(n);return "ok"}
+// "amassadinho" da bola no X1 e na Copa sem obrigar a página a se medir a cada toque
+function hitBump(b){if(!b)return;b.classList.add("hit");if(b.animate)b.animate([{transform:"none"},{transform:"scale(.88) rotate(10deg)"}],{duration:60,easing:"ease"})}
 let cpJ={};
 function cpKick(t){const M=CPM;if(!M||M.done||M.dq)return;const n=Date.now();if(n<M.go||n>M.go+CP_DUR)return;
  if(cpJ.M!==M)cpJ={M};const r=fairClick(cpJ,t);
  if(r==="robo"){M.dq=true;return}
  if(r==="ok")M.c++;sfxKick(false);
- const b=$("cpball");if(b){b.classList.remove("hit");void b.offsetWidth;b.classList.add("hit")}}
+ hitBump($("cpball"))}
 function cpEnd(){
  const M=CPM,C=S.copa,T=COPA[C.t],R=$("cpres");if(!M||!C)return;inc("cpJ");
  const btn=(t,f,pri)=>{const b=document.createElement("button");b.className="btn"+(pri?" pri":"");b.textContent=t;b.onclick=f;R.appendChild(b)};
@@ -4353,7 +4355,7 @@ function x1Kick(t){if(!X1||X1.st!=="ok"||X1.robo)return;const n=Date.now();if(n<
  if(x1J.id!==X1.id)x1J={id:X1.id};const r=fairClick(x1J,t);
  if(r==="robo"){X1.robo=1;X1.c=0;x1Pub();msg("🤖 Robô detectado! Clique automático não vale no X1.");return} // zera: o outro vence
  if(r==="ok")X1.c++;sfxKick(false);
- const b=$("x1ball");if(b){b.classList.remove("hit");void b.offsetWidth;b.classList.add("hit")}}
+ hitBump($("x1ball"))}
 function x1Result(me,op){S.cp=Object.assign({best:0,wc:0,wm:0,wp:0},S.cp);if(me>S.cp.best&&!X1.robo)S.cp.best=Math.min(135,me);
  const p=X1.to,R=$("x1res"),pz=nice(Math.max(1000,cps()*40+perClick()*20));inc("x1");
  if(X1.robo){R.innerHTML="🤖 ROBÔ!<small></small>";R.querySelector("small").textContent="Esse ritmo é de clique automático, não de gente. Você perdeu o X1 para "+nickOf(p)+"."}
