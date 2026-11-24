@@ -3,15 +3,66 @@ service cloud.firestore {
   match /databases/{database}/documents {
     function signed() { return request.auth != null; }
     function dono() { return signed() && request.auth.uid in ['F9nLEtltLHPtYRfV0NkLIQ71YSi2']; }
+    function isNum(x) { return x is int || x is float; }
+
+    // ===== ANTI-INVASÃO do cartão público (inv) =====
+    // Cada salvamento leva a hora do SERVIDOR (st). Com ela, ninguém consegue inventar cliques:
+    // no máximo 9 cliques por segundo de verdade (+ uma folguinha), igual ao juiz do jogo.
+    function onlyChanged(keys) {
+      return resource != null && request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys);
+    }
+    function hasPrev() {
+      return resource != null && 'st' in resource.data && resource.data.st is timestamp
+        && 'dk' in resource.data && resource.data.dk is map;
+    }
+    function secs() { return (request.time.toMillis() - resource.data.st.toMillis()) / 1000.0; }
+    function basicsOk(d) {
+      return 'st' in d && d.st == request.time
+        && (!('tot' in d) || (isNum(d.tot) && d.tot >= 0 && d.tot <= 1e40))
+        && (!('cc' in d) || (isNum(d.cc) && d.cc >= 0 && d.cc <= 500))
+        && (!('lv' in d) || (isNum(d.lv) && d.lv >= 0 && d.lv <= 1000))
+        && (!('nick' in d) || (d.nick is string && d.nick.size() <= 16))
+        && (!('n' in d) || (d.n is map && d.n.size() <= 300))
+        && (!('got' in d) || (d.got is map && d.got.size() <= 300));
+    }
+    // cliques do dia (Rei do dia e Liga)
+    function dkOk(d) {
+      return 'dk' in d && d.dk is map
+        && isNum(d.dk.c) && isNum(d.dk.yc) && d.dk.c >= 0 && d.dk.c <= 777600 && d.dk.yc >= 0 && d.dk.yc <= 777600
+        && (!hasPrev()
+          || (d.dk.d == resource.data.dk.d
+              && d.dk.c <= resource.data.dk.c + 9 * secs() + 300
+              && d.dk.yc == resource.data.dk.yc)
+          || (d.dk.d != resource.data.dk.d
+              && d.dk.c <= 9 * secs() + 300
+              && d.dk.yc <= resource.data.dk.c + 9 * secs() + 300));
+    }
+    // histórico de cliques dos últimos dias (Liga): só pode mudar o dia de hoje e o de ontem
+    function dhOk(d) {
+      return !('dh' in d) || (d.dh is map && d.dh.size() <= 40 && (
+        resource == null || !('dh' in resource.data) || !(resource.data.dh is map)
+        || dhDiffOk(d, d.dh.diff(resource.data.dh).addedKeys().union(d.dh.diff(resource.data.dh).changedKeys()))));
+    }
+    function dhDiffOk(d, ch) {
+      return ch.hasOnly([d.dk.d, d.dk.yd])
+        && (!ch.hasAny([d.dk.d]) || d.dh.get(d.dk.d, 0) <= d.dk.c)
+        && (!ch.hasAny([d.dk.yd]) || d.dh.get(d.dk.yd, 0) <= d.dk.yc);
+    }
+    function invOk() {
+      return basicsOk(request.resource.data) && dkOk(request.resource.data) && dhOk(request.resource.data);
+    }
 
     // progresso salvo de cada jogador (só ele lê e escreve)
     match /data/users/{uid}/{doc} {
       allow read, write: if signed() && request.auth.uid == uid;
     }
-    // inventário público de cada jogador (todos leem, só o dono escreve)
+    // inventário público de cada jogador (todos leem; só o dono do cartão escreve, e com valores possíveis)
     match /inv/{uid} {
       allow read: if signed();
-      allow write: if signed() && request.auth.uid == uid;
+      allow create, update: if signed() && (
+        (request.auth.uid == uid && (onlyChanged(['x1']) || invOk()))
+        || (dono() && onlyChanged(['nick']) && request.resource.data.nick == ''));
+      allow delete: if signed() && request.auth.uid == uid;
     }
     // comandos e configurações do ADM
     match /cfg/{doc} {
@@ -23,18 +74,20 @@ service cloud.firestore {
       allow read: if dono() || (signed() && request.auth.uid == uid);
       allow write: if signed() && request.auth.uid == uid;
     }
-    // mural de trocas e leilões
+    // mural de trocas e leilões: depois de criado, só muda o status (as bolas do anúncio não podem ser trocadas)
     match /ads/{id} {
       allow read: if signed();
       allow create: if signed() && request.resource.data.from == request.auth.uid;
-      allow update, delete: if signed() && resource.data.from == request.auth.uid;
+      allow update: if signed() && resource.data.from == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'at', 'auc']);
+      allow delete: if signed() && resource.data.from == request.auth.uid;
     }
-    // trocas e lances
+    // trocas e lances: depois de criados, só muda o status (ninguém consegue aumentar as bolas da proposta)
     match /trades/{id} {
       allow read: if signed();
       allow create: if signed() && request.resource.data.from == request.auth.uid;
       allow update: if signed() && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid)
-        && request.resource.data.from == resource.data.from && request.resource.data.to == resource.data.to;
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'at', 'lot']);
       allow delete: if signed() && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
     }
     // travas curtas das trocas
