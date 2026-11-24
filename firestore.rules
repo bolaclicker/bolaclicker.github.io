@@ -32,7 +32,8 @@ service cloud.firestore {
         && (!hasPrev()
           || (d.dk.d == resource.data.dk.d
               && d.dk.c <= resource.data.dk.c + 9 * secs() + 300
-              && d.dk.yc == resource.data.dk.yc)
+              && (d.dk.yc <= resource.data.dk.yc
+                  || d.dk.c + d.dk.yc <= resource.data.dk.c + resource.data.dk.yc + 9 * secs() + 300))
           || (d.dk.d != resource.data.dk.d
               && d.dk.c <= 9 * secs() + 300
               && d.dk.yc <= resource.data.dk.c + 9 * secs() + 300));
